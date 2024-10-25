@@ -4,7 +4,12 @@
 \alias{convert_csv_to_pqt}
 \title{Convert CSV File to Parquet Format}
 \usage{
-convert_csv_to_pqt(file_in, file_out = NA)
+convert_csv_to_pqt(
+  file_in,
+  file_out = NA,
+  .clean_names = FALSE,
+  overwrite = TRUE
+)
 }
 \arguments{
 \item{file_in}{A character string specifying the path to the input CSV file.}
@@ -12,6 +17,11 @@ convert_csv_to_pqt(file_in, file_out = NA)
 \item{file_out}{A character string specifying the path to the output Parquet file.
 Defaults to \code{NA}, which will use the same path and name as \code{file_in},
 replacing the \code{.csv} extension with \code{.pqt}.}
+
+\item{.clean_names}{logical, determines if input data frame should be passed
+to janitor::clean_names}
+
+\item{overwrite}{if TRUE will overwrite any existing file_out}
 }
 \value{
 This function returns \code{invisible(NA)}. The output file is saved as a Parquet file.
