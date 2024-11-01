@@ -8,7 +8,8 @@
 #'
 #' @param df1 A data frame containing the first dataset to be compared.
 #' @param df2 A data frame containing the second dataset to be compared.
-#' @param excluded_cols A character vector of column names to be excluded from the comparison.
+#' @param exclude see RLBigDataLinkage
+#' @param blockfld see RLBigDataLinkage
 #'
 #' @return A `RecLinkData` object with the computed pairwise comparison weights.
 #'
@@ -21,11 +22,11 @@
 #' @import RecordLinkage
 #' @export
 
-generate_pairs <- function(df1, df2, excluded_cols){
+generate_pairs <- function (df1, df2, exclude = numeric(0), blockfld = list()) {
 
   # Find the pairs
-  pairs <- RLBigDataLinkage(df1, df2, exclude = excluded_cols, strcmp = TRUE,
-                            strcmpfun = "levenshtein")
+  pairs <- RLBigDataLinkage(df1, df2, exclude = exclude, strcmp = TRUE,
+                            blockfld = blockfld, strcmpfun = "levenshtein")
 
   # Calculate weights
   pairs_weighted <- epiWeights(pairs)

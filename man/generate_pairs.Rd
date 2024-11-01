@@ -4,14 +4,16 @@
 \alias{generate_pairs}
 \title{Generate Record Linkage Pairs}
 \usage{
-generate_pairs(df1, df2, excluded_cols)
+generate_pairs(df1, df2, exclude = numeric(0), blockfld = list())
 }
 \arguments{
 \item{df1}{A data frame containing the first dataset to be compared.}
 
 \item{df2}{A data frame containing the second dataset to be compared.}
 
-\item{excluded_cols}{A character vector of column names to be excluded from the comparison.}
+\item{exclude}{see RLBigDataLinkage}
+
+\item{blockfld}{see RLBigDataLinkage}
 }
 \value{
 A \code{RecLinkData} object with the computed pairwise comparison weights.
