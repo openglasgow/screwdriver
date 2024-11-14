@@ -19,7 +19,7 @@
 #' df2 <- data.frame(name = c("Jon", "Janet"), age = c(26, 31))
 #' pairs <- generate_pairs(df1, df2, excluded_cols = c("age"))
 #'
-#' @import RecordLinkage
+#' @importFrom RecordLinkage RLBigDataLinkage epiWeights
 #' @export
 
 generate_pairs <- function (df1, df2, exclude = numeric(0), blockfld = list()) {
@@ -56,7 +56,6 @@ generate_pairs <- function (df1, df2, exclude = numeric(0), blockfld = list()) {
 #' # Example usage
 #' classified_pairs <- classify_pairs(pairs, lower_threshold = 0.6, upper_threshold = 0.85)
 #'
-#' @import RecordLinkage
 #' @export
 
 classify_pairs <- function(pairs, lower_threshold = 0.6,
