@@ -16,8 +16,8 @@
 calc_age <- function (birth_date, to_date = Sys.Date(), freq = years,
                       set_negative_na = FALSE, warn = FALSE) {
 
-  if (!is.Date(birth_date)) stop ("birth_date must be a date")
-  if (!is.Date(to_date)) stop ("to_date must be a date")
+  if (!is_date(birth_date)) stop ("birth_date must be a date")
+  if (!is_date(to_date)) stop ("to_date must be a date")
 
   if (length(to_date) != length(birth_date) & length(to_date) != 1) {
 
@@ -25,7 +25,13 @@ calc_age <- function (birth_date, to_date = Sys.Date(), freq = years,
 
   }
 
-  ages <- trunc((birth_date %--% to_date) / freq(1))
+  posixlt_to_date <- as.POSIXlt(to_date)
+  posixlt_birth_date <- as.POSIXlt(birth_date)
+
+  ages <- posixlt_to_date$year - posixlt_birth_date$year -
+          ((posixlt_to_date$mon < posixlt_birth_date$mon) |
+           ((posixlt_to_date$mon == posixlt_birth_date$mon) &
+            (posixlt_to_date$mday < posixlt_birth_date$mday)))
 
   bad_birth_dates <- birth_date[birth_date > to_date]
 

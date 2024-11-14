@@ -15,7 +15,6 @@
 #' @importFrom vroom vroom
 #' @importFrom arrow write_parquet
 #' @importFrom janitor clean_names
-#' @importFrom readr cols
 #' @importFrom readr col_character
 #'
 #' @examples
